@@ -2,7 +2,6 @@ import { useState } from "react";
 import NavBar from "../components/navbar";
 import { use } from "react";
 import { ArrowBigDown, ArrowUpRight, TrendingDown, TrendingUp, Wallet } from "lucide-react";
-import transactions from "../data/transaction";
 const Dashboard=({activePage,setActivePage,transactions,setTransactions})=>{
 const [amount,setAmount]=useState("");
 const [description,setDescription]=useState("");
@@ -10,25 +9,24 @@ const [category,setCategory]=useState("");
 const totalInflow=parseFloat(transactions.filter(t =>t.type=="income").reduce((acc,t)=>acc+t.amount,0));
 const totalOutFlow=parseFloat(transactions.filter(t=>t.type=="expense").reduce((acc,t)=>acc+t.amount,0));
 const balance=parseFloat(totalInflow-totalOutFlow);
-const saveTransaction=(e)=>{
-  e.preventDefault;
-  if(!description||!amount){return;};
- ;
 
+const saveTransaction=(e)=>{
+  e.preventDefault();
+  if(!description||!amount)return;
   const type=category==="Income"?"income":"expense";
-  const newTransaction=[
+  const newTransaction=
     {
-      id:Date.now,
+      id:Date.now(),
       title:description,
-      amount:parseAmount,
+      amount:parseFloat(amount),
       date:new Date().toLocaleDateString('en-Us',{month:'short',day:'numeric',year:'numeric'}),
       type:category
-    }
-  ];
-  setTransactions([...transactions,newTransaction]);
+    };
+  setTransactions([newTransaction, ...transactions]);
   setDescription("");
   setAmount("");
-  setCategory("")
+  setCategory("");
+  e.target.reset(); 
   console.log(transactions);
 }
 const flows=[
@@ -51,7 +49,7 @@ const flows=[
 return(
 <div className="flex lg:h-screen">
   
-  <NavBar  activePage={activePage} setActivePage={setActivePage}/>
+  <NavBar  activePage={activePage} setActivePage={setActivePage} />
   <div className="flex flex-col">
     <h1 className="text-2xl font-bold p-2">Dashboard</h1>
     <div className="grid items-start space-y-4 p-3 md:grid-cols-2 md:space-x-2 lg:grid-cols-3  ">
@@ -90,7 +88,7 @@ return(
             <option value="expense">Expense</option>
           </select>
         </div>
-        <button className="bg-blue-700 rounded-md w-40 h-10 text-white font-medium cursor-pointer">Save Transaction</button>
+        <button type="submit" className="bg-blue-700 rounded-md w-40 h-10 text-white font-medium cursor-pointer">Save Transaction</button>
         </form>
       <div>
       <div className="flex flex-col  rounded shadow-lg p-5 ">
@@ -104,7 +102,7 @@ return(
                   <span className="font-medium">{trans.title}</span>
                   <div className="flex "><span className="p-1 font-medium text-[#9ca3af]">{trans.date}</span><span className={`p-1 rounded-xl ${trans.type==="expense"?"bg-red-300":"bg-green-300"}`}>{trans.type}</span></div>
                 </div>
-                <div className={`ml-auto p-3 text-2xl font-bold ${trans.type==="expense"?"text-red-600":"text-emerald-600"}`}><span className={`${trans.type!="income"?"hidden":""}`}>+</span><span className={`${trans.type!="expense"?"hidden":""}`} >-</span>{trans.amount.toLocaleString()}</div>
+                <div className={`ml-auto p-3 text-2xl font-bold ${trans.type==="expense"?"text-red-600":"text-emerald-600"}`}><span className={`${trans.type!="income"?"hidden":""}`}>+</span><span className={`${trans.type!="expense"?"hidden":""}`} >-</span>{trans.amount}</div>
               </div>
             )
           })

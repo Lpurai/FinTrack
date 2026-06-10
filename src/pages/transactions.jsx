@@ -1,7 +1,22 @@
 import { Trash2 } from "lucide-react";
-import transactionsData from "../data/transaction";
-const Transactions=()=>{
+import { useState } from "react";
+const Transactions=({transactions,setTransactions})=>{
+  const [searchTerm,setSearchTerm]=useState('');
+  const [selectedCategory,setSelectedCategory]=useState('All');
+
+  const handleDelete=(id)=>{
+    if(window.confirm("Are you sure you want to delete this transaction record?")){
+      setTransactions(transactions.filter(t=>t.id !==id))
+    }
+  };
   
+  const filteredTransactions =transactions.filter(
+    (t)=>{
+      const matchesSearch=t.title.toLowerCase().includes(searchTerm.toLocaleLowerCase());
+      const matchedCategory=selectedCategory==="All" || t.type ===selectedCategory;
+      return matchesSearch && matchedCategory;
+    }
+  )
   return(
     <div className="flex flex-col p-3">
       <div className="flex ">
@@ -10,7 +25,7 @@ const Transactions=()=>{
           <p>View,Search,and manage your complete historical records</p>
         </div>
         <div className="w-35 ml-auto mt-3 text-slate-50 font-medium rounded-full h-10 p-2 bg-blue-700">
-          Total Records: <span>{transactionsData.length}</span>
+          Total Records: <span>{transactions.length}</span>
         </div>
         
       </div>
@@ -37,14 +52,14 @@ const Transactions=()=>{
           </thead>
          <tbody>
            {
-            transactionsData.map((data,idx)=>{
+            transactions.map((data,idx)=>{
               return(
                 <tr key={idx} className="grid grid-cols-5 p-2 ">
                   <td className="mr-auto ml-3 font-extralight">{data.date}</td>
                   <td >{data.title}</td>
                   <td className={`px-2 py-1 rounded-full w-20 ${data.type==="income"?"bg-emerald-300":"bg-gray-300"}`}>{data.type}</td>
                   <td className={`font-medium text-lg ${data.type==="expense"?"text-red-600":"text-emerald-600"}`}><span className={`${data.type!="income"?"hidden":""}`}>+</span><span className={`${data.type!="expense"?"hidden":""}`} >-</span>{data.amount}</td>
-                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1"><Trash2/>Delete</td>
+                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1" onClick={handleDelete}><Trash2/>Delete</td>
 
                 </tr>
               )
