@@ -18,7 +18,7 @@ function App() {
   const renderPage=()=>{
     switch(activePage){
       case "dashboard": return <Dashboard activePage={activePage} setActivePage={setActivePage} transactions={transactions} setTransactions={setTransactions}/>;
-      case "transactions":return <Transactions transactions={transactions}/>;
+      case "transactions":return <Transactions transactions={transactions} setTransactions={setTransactions}/>;
       case "budgets":return <Budgets/>;
       case "reports": return <Reports/>;
       case "settings":return <Settings/>;
