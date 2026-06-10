@@ -4,11 +4,11 @@ const Transactions=({transactions,setTransactions})=>{
   const [searchTerm,setSearchTerm]=useState('');
   const [selectedCategory,setSelectedCategory]=useState('All');
 
-  const handleDelete=(id)=>{
+  /*const handleDelete=(id)=>{
     if(window.confirm("Are you sure you want to delete this transaction record?")){
       setTransactions(transactions.filter(t=>t.id !==id))
     }
-  };
+  };*/
   
   const filteredTransactions =transactions.filter(
     (t)=>{
@@ -25,14 +25,14 @@ const Transactions=({transactions,setTransactions})=>{
           <p>View,Search,and manage your complete historical records</p>
         </div>
         <div className="w-35 ml-auto mt-3 text-slate-50 font-medium rounded-full h-10 p-2 bg-blue-700">
-          Total Records: <span>{transactions.length}</span>
+          Total Records: <span>{filteredTransactions.length}</span>
         </div>
         
       </div>
       <div className="m-2 grid grid-cols-2 p-3 border-2 border-[#f3f4f6] shadow-md rounded space-x-2">
-        <input type="text" placeholder="Search by description (eg.,Rent,Fees)" className="p-1 border-2 border-[#9ca3af] rounded-md outline-blue-300"/>
-        <select name="filterByCategory" id="filter" className="p-2 border-2 border-[#9ca3af] rounded-md outline-blue-300">
-          <option value="">All Categories</option>
+        <input value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)} type="text" placeholder="Search by description (eg.,Rent,Fees)" className="p-1 border-2 border-[#9ca3af] rounded-md outline-blue-300"/>
+        <select value={selectedCategory} onChange={(e)=>setSelectedCategory(e.target.value)} name="filterByCategory" id="filter" className="p-2 border-2 border-[#9ca3af] rounded-md outline-blue-300">
+          <option value="All">All Categories</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
 
@@ -51,20 +51,26 @@ const Transactions=({transactions,setTransactions})=>{
             </tr>
           </thead>
          <tbody>
-           {
-            transactions.map((data,idx)=>{
+           {filteredTransactions.length > 0 ?(
+            filteredTransactions.map((data,idx)=>{
               return(
                 <tr key={idx} className="grid grid-cols-5 p-2 ">
                   <td className="mr-auto ml-3 font-extralight">{data.date}</td>
                   <td >{data.title}</td>
                   <td className={`px-2 py-1 rounded-full w-20 ${data.type==="income"?"bg-emerald-300":"bg-gray-300"}`}>{data.type}</td>
                   <td className={`font-medium text-lg ${data.type==="expense"?"text-red-600":"text-emerald-600"}`}><span className={`${data.type!="income"?"hidden":""}`}>+</span><span className={`${data.type!="expense"?"hidden":""}`} >-</span>{data.amount}</td>
-                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1" onClick={handleDelete}><Trash2/>Delete</td>
+                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1" ><Trash2/>Delete</td>
 
                 </tr>
               )
 
             })
+           ):(
+            <td colSpan="5" className="font-medium p-3 text-center italic">
+              No transaction entries matched your criteria
+            </td>
+           )
+            
            }
           </tbody>
         </table>
