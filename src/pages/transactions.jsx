@@ -4,11 +4,7 @@ const Transactions=({transactions,setTransactions})=>{
   const [searchTerm,setSearchTerm]=useState('');
   const [selectedCategory,setSelectedCategory]=useState('All');
 
-  /*const handleDelete=(id)=>{
-    if(window.confirm("Are you sure you want to delete this transaction record?")){
-      setTransactions(transactions.filter(t=>t.id !==id))
-    }
-  };*/
+  
   
   const filteredTransactions =transactions.filter(
     (t)=>{
@@ -59,7 +55,7 @@ const Transactions=({transactions,setTransactions})=>{
                   <td >{data.title}</td>
                   <td className={`px-2 py-1 rounded-full w-20 ${data.type==="income"?"bg-emerald-300":"bg-gray-300"}`}>{data.type}</td>
                   <td className={`font-medium text-lg ${data.type==="expense"?"text-red-600":"text-emerald-600"}`}><span className={`${data.type!="income"?"hidden":""}`}>+</span><span className={`${data.type!="expense"?"hidden":""}`} >-</span>{data.amount}</td>
-                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1" ><Trash2/>Delete</td>
+                  <td className="flex border rounded-md hover:bg-red-300 cursor-pointer border-[#9ca3af] w-20  p-1" ><Trash2 />Delete</td>
 
                 </tr>
               )
