@@ -35,6 +35,8 @@ const Budgets=({transactions})=>{
       .filter(t => t.title === categoryName && t.type === 'expense')
       .reduce((sum, t) => sum + t.amount, 0);
   };
+   const filteredBudgetList=transactions.filter(t=>t.type==="expense");
+   console.log(filteredBudgetList)
 
   const getProgressBarColor = (percentage) => {
     if (percentage >= 100) return 'bg-rose-600'; 
@@ -54,13 +56,15 @@ const Budgets=({transactions})=>{
           <label htmlFor="type" className="font-medium text-md">Category</label>
           <select value={selectedCategory}  name="category" id="category" className="border p-2 rounded-md border-2 border-[#9ca3af] outline-none" onChange={(e)=>{setSelectedCategory(e.target.value)}}>
             {
-            currentBudgets.map((category)=>(
-                
-                  <option value={category.category} key={category.id} >
-                    {category.category}
+              
+            filteredBudgetList.map((category)=>{
+
+                return(
+                  <option value={category.title} key={category.id} >
+                    {category.title}
                   </option>
                 
-              ))
+              )})
             }
           </select>
         </div>
@@ -84,7 +88,7 @@ const Budgets=({transactions})=>{
 
               return (
                 <div key={b.id} className="space-y-2 border-b border-slate-50 pb-4 last:border-0 last:pb-0">
-                  {/* Category Metadata Header Row */}
+
                   <div className="flex justify-between items-center text-sm">
                     <div>
                       <span className="font-semibold text-slate-700">{b.category}</span>
@@ -102,7 +106,6 @@ const Budgets=({transactions})=>{
                     </div>
                   </div>
 
-                  {/* Tailwind CSS Outer Progress Bar Channel */}
                   <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
                     <div 
                       className={`h-full rounded-full transition-all duration-500 ease-out ${getProgressBarColor(formattedPercent)}`}
