@@ -20,7 +20,7 @@ function App() {
       case "dashboard": return <Dashboard activePage={activePage} setActivePage={setActivePage} transactions={transactions} setTransactions={setTransactions}/>;
       case "transactions":return <Transactions transactions={transactions} setTransactions={setTransactions}/>;
       case "budgets":return <Budgets transactions={transactions}/>;
-      case "reports": return <Reports/>;
+      case "reports": return <Reports transactions={transactions}/>;
       case "settings":return <Settings/>;
       default :return <Dashboard/>
 
