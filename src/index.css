@@ -4,4 +4,32 @@
     --bg: #16171d;
     --border: #2e303a;
     --code-bg: #1f2028;*/
-    
+
+@theme {
+ 
+  --color-brand-dark: #1e2640;
+  --color-brand-dark-hover: #111827;
+  --color-brand-sidebar-select: #334155;
+
+  --color-brand-lightred:oklch(80.8% 0.114 19.571);
+  /*  Highlight Colors */
+  --color-brand-cyan: #22d3ee;
+  --color-brand-blue: #2563eb;
+  --color-brand-blue-hover: #1d4ed8;
+
+  /* Money Flow Status Colors (Green for Income, Red for Expenses) */
+  --color-status-inflow: #10b981;
+  --color-status-outflow: #f43f5e;
+  --color-status-outflow-dark: #be123c;
+
+  /*  Tracking Colors */
+  --color-gauge-safe: #2563eb;
+  --color-gauge-warning: #f59e0b;
+  --color-gauge-danger: #e11d48;
+  
+
+  /* Background */
+  --color-surface-bg: #f8fafc;
+  --color-surface-card: #ffffff;
+  --color-surface-border: #e2e8f0;
+}

@@ -26,7 +26,7 @@ const NavBar=({activePage,setActivePage})=>{
   
 
   return(
-<div className="w-40 p-1  bg-[#16171d] text-[#9ca3af]  flex flex-col  space-y-5 ">
+<div className="w-40 p-1  bg-brand-dark text-surface-bg  flex flex-col  space-y-5 ">
 {
   navItem.map((item,index)=>
   {
@@ -42,7 +42,7 @@ const NavBar=({activePage,setActivePage})=>{
 
   };
     return(
-      <div key={index} className="flex space-x-2 hover:bg-[#9ca3af] hover:text-[#16171d] cursor-pointer rounded-md p-2" onClick={
+      <div key={index} className="flex space-x-2 hover:bg-brand-dark-hover active:bg-brand-sidebar-select hover:text-surface-bg cursor-pointer rounded-md p-2" onClick={
         ()=>{setActivePage(getActivePage)
         }
       }>
