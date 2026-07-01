@@ -3,30 +3,30 @@ const NavBar=({activePage,setActivePage})=>{
   const navItem=[
     {
      title:"Dashboard",
-     icon:<LayoutDashboard/>,
+     icon:<LayoutDashboard className="text-cyan-accent"/>,
     },
     {
      title:"Transactions",
-     icon:<ArrowLeftRight/>,
+     icon:<ArrowLeftRight className="text-cyan-accent"/>,
     },
     {
      title:"Budgets",
-     icon:<Scale/>,
+     icon:<Scale className="text-cyan-accent"/>,
     },
     {
      title:"Reports",
-     icon:<BarChart3/>,
+     icon:<BarChart3 className="text-cyan-accent"/>,
     },
     {
      title:"Settings",
-     icon:<Settings/>,
+     icon:<Settings className="text-cyan-accent"/>,
     }
     
   ];
   
 
   return(
-<div className="w-40 p-1  bg-brand-dark text-surface-bg  flex flex-col  space-y-5 ">
+<div className="w-40 p-1  bg-secondary border-r  border-border text-secondary-text  flex flex-col  space-y-5 ">
 {
   navItem.map((item,index)=>
   {
@@ -42,7 +42,7 @@ const NavBar=({activePage,setActivePage})=>{
 
   };
     return(
-      <div key={index} className="flex space-x-2 hover:bg-brand-dark-hover active:bg-brand-sidebar-select hover:text-surface-bg cursor-pointer rounded-md p-2" onClick={
+      <div key={index} className="flex space-x-2 hover:bg-card-background active:border-muted-accent active:border-1  active:bg-active-cyan active:text-white-text  cursor-pointer rounded-md p-2" onClick={
         ()=>{setActivePage(getActivePage)
         }
       }>
