@@ -57,7 +57,7 @@ return(
         flows.map((flow,index)=>
           {
             return(
-          <div key={index} className=" p-7 w-70  bg-secondary shadow-lg  rounded-md hover:border-1 hover:border-muted-cyan hover:bg-card-background hover:text-white-text border-1 border-border space-y-3">
+          <div key={index} className=" p-7 w-70  bg-card-background shadow-lg  rounded-md hover:border-1 hover:border-muted-cyan hover:bg-secondary hover:text-white-text border-1 border-border space-y-3">
             <div key={index} className="flex space-x-2">
               <span className={`p-1 rounded bg-muted-cyan ${flow.title==="Net Wallet Balance"?' text-cyan-accent':flow.title==="Total Inflow"?' text-gauge-safe':' text-gauge-danger'}`} >{flow.icon}</span>
               <span className="font-medium">{flow.title}</span>
