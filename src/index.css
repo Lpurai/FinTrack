@@ -15,11 +15,11 @@ body{
 }
 @theme {
   --color-background:#0B0E14;
-  --color-secondary:#151A22;
+  --color-secondary:#1d293d;
   --color-card-background:#1C232E;
   --color-primary-green:#7CFF4D;
   
-  --color-cyan-accent:#3ED7FF;
+  --color-cyan-accent:#39c3df;
   --color-muted-cyan:#1E4F5C;
   --color-active-cyan:#38BDF8;
   --color-white-text:#FFFFFF;
@@ -27,17 +27,7 @@ body{
   --color-border:#2D3748;
 
   
-  --color-active-border:#1A1F28 ;
-  --color-active-text: #9CA3AF;
 
-  --color-brand-dark-hover: #111827;
-  --color-brand-sidebar-select: #334155;
-
-  --color-brand-lightred:oklch(80.8% 0.114 19.571);
-  /*  Highlight Colors */
-  --color-brand-cyan: #22d3ee;
-  --color-brand-blue: #2563eb;
-  --color-brand-blue-hover: #1d4ed8;
 
   /* Money Flow Status Colors (Green for Income, Red for Expenses) */
   --color-status-inflow: #10b981;
@@ -49,9 +39,4 @@ body{
   --color-gauge-warning: #f59e0b;
   --color-gauge-danger: #e11d48;
   
-
-  /* Background */
-  --color-surface-bg: #f8fafc;
-  --color-surface-card: #ffffff;
-  --color-surface-border: #e2e8f0;
 }
