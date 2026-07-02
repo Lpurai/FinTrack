@@ -100,7 +100,7 @@ return(
               <div key={index} className="flex p-2">
                 <div className="">
                   <span className="font-medium text-white-text">{trans.title}</span>
-                  <div className="flex "><span className="p-1 font-medium text-secondary-text ">{trans.date}</span><span className={`p-1 rounded-xl bg-muted-cyan font-bold ${trans.type==="expense"?"text-gauge-warning":"text-gauge-safe"}`}>{trans.type.toUpperCase()}</span></div>
+                  <div className="flex "><span className="p-1 font-medium text-secondary-text ">{trans.date}</span><span className={`py-1 px-2 rounded-lg bg-secondary font-bold ${trans.type==="expense"?"text-gauge-warning":"text-gauge-safe"}`}>{trans.type.toUpperCase()}</span></div>
                 </div>
                 <div className={`ml-auto p-3 text-2xl font-bold ${trans.type==="expense"?"text-gauge-danger":"text-primary-green"}`}><span className={`${trans.type!="income"?"hidden":""}`}>+</span><span className={`${trans.type!="expense"?"hidden":""}`} >-</span>{trans.amount}</div>
               </div>
