@@ -47,14 +47,14 @@ const Budgets=({transactions})=>{
 
   return(
     <div className="flex flex-col p-3">
-    <h1 className="font-medium text-xl">Budget Limits</h1>
+    <h1 className="font-medium text-2xl text-cyan-accent px-1 py-2">Budget Limits</h1>
     <div className="flex space-x-5 max-md:flex-col max-md:space-y-3">
-      <div className="grow-1 py-4 px-3 border-2 border-[#f3f4f6] rounded shadow space-y-5">
-        <form action="" onSubmit={handleSetBudget} className="space-y-3">
-        <h2 className="font-medium text-lg">Configure Target Limit</h2>
-        <div className="flex flex-col  ">
+      <div className="grow-1  px-3 border-1 border-border rounded shadow bg-card-background hover:border-muted-cyan ">
+        <form action="" onSubmit={handleSetBudget} className="">
+        <h2 className="font-medium text-lg pt-2 pb-3 text-white-text">Configure Target Limit</h2>
+        <div className="flex flex-col pb-6 space-y-1 ">
           <label htmlFor="type" className="font-medium text-md">Category</label>
-          <select value={selectedCategory}  name="category" id="category" className="border p-2 rounded-md border-2 border-[#9ca3af] outline-none" onChange={(e)=>{setSelectedCategory(e.target.value)}}>
+          <select value={selectedCategory}  name="category" id="category" className="border p-2 bg-active-border active:border-cyan-accent hover:border-muted-cyan rounded-md border-1 appearance-none border-border outline-none" onChange={(e)=>{setSelectedCategory(e.target.value)}}>
             {
               
             filteredBudgetList.map((category)=>{
@@ -68,17 +68,17 @@ const Budgets=({transactions})=>{
             }
           </select>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col space-y-1">
           <label htmlFor="limitAmount" className="font-medium text-md">Monthly Limit(KES)</label>
-          <input type="number"  placeholder="eg.,500" className="border p-2 rounded-md border-2 border-[#9ca3af] outline-none" value={limitInput} onChange={(e)=>{setLimitInput(e.target.value)}} />
+          <input type="number"  placeholder="eg.,500" className="border-1 p-2 rounded-md  border-border outline-none hover:border-muted-cyan active:border-cyan-accent" value={limitInput} onChange={(e)=>{setLimitInput(e.target.value)}} />
         </div>
-        <button  className="bg-blue-700 rounded-md w-40 h-10 text-white font-medium cursor-pointer">Save Budget Rule</button>
+        <button  className="bg-cyan-accent my-3 rounded-md w-40 h-10 text-background font-medium cursor-pointer">Save Budget Rule</button>
         </form>
         </div>
-      <div className=" grow-2 p-2 border-2 border-[#f3f4f6] rounded shadow">
-        <h2 className="font-medium text-lg">Active Allocations Tracker</h2>
+      <div className=" grow-2 p-2 border-1 border-border bg-card-background rounded shadow hover:border-muted-cyan">
+        <h2 className="font-medium text-lg text-white-text mb-3">Active Allocations Tracker</h2>
 
-        <div className="space-y-6">
+        <div className="space-y-6 text-secondary-text">
             {budgets.map((b) => {
               const actualSpent = getActualSpending(b.category);
             
@@ -87,26 +87,26 @@ const Budgets=({transactions})=>{
               const remainingMoney = b.limit - actualSpent;
 
               return (
-                <div key={b.id} className="space-y-2 border-b border-slate-50 pb-4 last:border-0 last:pb-0">
+                <div key={b.id} className="space-y-2 border-b border-border pb-4 last:border-0 last:pb-0">
 
                   <div className="flex justify-between items-center text-sm">
                     <div>
-                      <span className="font-semibold text-slate-700">{b.category}</span>
-                      <span className="text-xs text-slate-400 block mt-0.5">
+                      <span className="font-semibold text-white-text">{b.category}</span>
+                      <span className="text-xs text-secondary-text block mt-0.5">
                         Spent KES {actualSpent.toLocaleString()} of KES {b.limit}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className={`font-bold text-sm ${formattedPercent >= 100 ? 'text-rose-600' : 'text-slate-700'}`}>
+                      <span className={`font-bold text-sm ${formattedPercent >= 100 ? 'text-gauge-danger' : 'text-secondary-text'}`}>
                         {formattedPercent}%
                       </span>
-                      <span className={`text-xs block mt-0.5 ${remainingMoney < 0 ? 'text-rose-500 font-semibold' : 'text-slate-400'}`}>
+                      <span className={`text-xs block mt-0.5 ${remainingMoney < 0 ? 'text-gauge-danger font-semibold' : 'text-secondary-text'}`}>
                         {remainingMoney >= 0 ? `KES ${remainingMoney.toLocaleString()} left `: `Overby KES ${Math.abs(remainingMoney).toLocaleString()}`}
                       </span>
                     </div>
                   </div>
 
-                  <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-secondary-text h-2.5 rounded-full overflow-hidden">
                     <div 
                       className={`h-full rounded-full transition-all duration-500 ease-out ${getProgressBarColor(formattedPercent)}`}
                       style={{ width: `${percentUsed}% `}}>
